@@ -30,6 +30,7 @@ app.use('/validate-rule', validateRule.checkRuleField);
 app.get('/', indexRoute);
 
 //POST: Validate Rule 
+// 2/
 app.post('/validate-rule', validateRule.ValidateRule);
 
 

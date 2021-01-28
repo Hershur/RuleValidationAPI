@@ -101,6 +101,17 @@ class ValidateRule {
         const getFieldValue = _.get(req.body.data, req.body.rule.field);
         let checkCondition = false; 
 
+        if(isEmpty(getFieldValue)){
+            res.status(400);
+            return res.json({
+                message: `field '${req.body.rule.field}' is missing from data.`,
+                status: "error",
+                data: null
+            }); 
+                
+        }
+
+        //Check condition
         switch (req.body.rule.condition) {
             case 'eq':
                 checkCondition = +getFieldValue == +req.body.rule.condition_value;
@@ -122,15 +133,7 @@ class ValidateRule {
                 break;
         }
 
-        if(isEmpty(getFieldValue)){
-            res.status(400);
-            return res.json({
-                message: `field '${req.body.rule.field}' is missing from data.`,
-                status: "error",
-                data: null
-            }); 
-                
-        }
+
         if(checkCondition){
             res.status(200);
             return res.json({ 
