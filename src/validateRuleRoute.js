@@ -11,7 +11,7 @@ const  isEmpty = (value)=> {
 class ValidateRule {
     // a/
     checkFields(req, res, next) {
-        if(!isEmpty(req.body) && _.isObject(req.body)){
+        if(!isEmpty(req.body) && ((req.body).constructor == Object)){
             const reqFields = ['rule', 'data'];
             for(const field of reqFields){
                 if(!(field in req.body) || isEmpty(req.body[field])){
