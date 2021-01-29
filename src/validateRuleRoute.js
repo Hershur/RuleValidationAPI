@@ -126,7 +126,7 @@ class ValidateRule {
                 checkCondition = +getFieldValue >= +req.body.rule.condition_value;
                 break;
             case 'contains':
-                checkCondition = getFieldValue.includes(req.body.rule.condition_value);
+                checkCondition = getFieldValue.toString().includes(req.body.rule.condition_value);
                 break;
         
             default:
